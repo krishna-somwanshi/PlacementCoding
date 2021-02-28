@@ -1,0 +1,63 @@
+Deciaml to Binary
+Binary to Deciaml
+------------------
+binary = 1001 //9
+int binary = 11011;
+//int range 32768
+int binary[] = {1,0,1,0,1,0}
+
+768 = 7 * 10^2 + 6 * 10^1 + 8 * 10^0
+binary 11011
+11011 	= 1 * 2^4 + 1 * 2^3 +0 * 2^2 + 1 * 2^1 + 1 * 2^0
+		= 16 + 8 + 0 + 2 + 1
+		= 27
+
+finding the unit digit
+update the binary number
+multiply the unit digit with 2^k
+k starts from 0, and increment by 1 on every iteration
+add the multiplied value to the decimal (output)
+
+void main(){
+	int binary = 11011;
+	int decimal = 0;
+	int unit_digit = 0;
+	int k = 0;
+	int tempMulti = 0;
+		
+	while( binary != 0){
+		unit_digit = binary % 10;
+		binary = binary / 10;
+		tempMulti = unit_digit * pow(2,k);
+		k++;
+		decimal = decimal + tempMulti;
+	}
+	cout<<"The decimal value is : "<<decimal;
+}
+
+int power(int base, int k){
+    //multiply 2 k number of times
+    int result = 1;
+    int i=0;
+    for(i=0;i<k;i++)
+        result = result * base;
+    return result;
+}
+
+//binary is stored in an array
+int main(){
+	int binary[] = {1,1,1,1,1,1,0,1};
+	int len = 8;
+	int decimal = 0;
+	int i=0;
+	int tempMulti = 0;
+	int k = 0;
+	
+	for(i=len-1; i >= 0; i--){
+		tempMulti = binary[i] * power(2,k);
+		k++;
+		decimal += tempMulti;
+	}
+	cout<<"Deciaml value using binary array approach :"<<decimal;
+	return 0;
+}
